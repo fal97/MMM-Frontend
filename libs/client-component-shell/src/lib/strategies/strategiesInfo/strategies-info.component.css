@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+  }
+
+.table-container{
+    padding: 30px;
+}
+
+.button-container{
+    padding: 5px 20px;
+}
+
+.btn-main{
+    margin: 1rem;
+}

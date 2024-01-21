@@ -1,0 +1,121 @@
+<div class="main-wrapper">
+  <mat-toolbar class="navbar">
+    <span>
+      <img
+        width="60%"
+        src="https://static.wixstatic.com/media/f7c4b7_4b17cac35f5847b89ce7759b062c7c59~mv2.png/v1/fill/w_240,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Monei_Lanscape_RGB_edited.png"
+      />
+    </span>
+    <!-- <span> Monei Mortgage Mastery Dasboard </span> -->
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+  <div class="main-container">
+    <!-- <div class="header-text-container">
+            <h1 class="header-text">WelCome to</h1>
+            <h1 class="header-text">MMM</h1>
+        </div> -->
+    <div>
+      <mat-card class="card">
+        <mat-card-title><h4>Request to Join</h4></mat-card-title>
+        <!-- <mat-card-title class="errorText" *ngIf="showErrorMsg" ><h6>{{errorText}}</h6></mat-card-title> -->
+
+        <mat-card-content>
+          <form
+            class="form-container"
+            [formGroup]="requestForm"
+            (ngSubmit)="submit()"
+          >
+            <mat-form-field >
+              <input
+                type="text"
+                class="name"
+                id="nameId"
+                matInput
+                placeholder="Name"
+                formControlName="name"
+              />
+              <mat-error
+                *ngIf="
+                requestForm.get('name')?.invalid &&
+                  (requestForm.get('name')?.dirty ||
+                  requestForm.get('name')?.touched)
+                "
+                
+                >Name is Required</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field >
+              <input
+                type="email"
+                class="email"
+                id="emailId"
+                matInput
+                placeholder="Email"
+                formControlName="email"
+              />
+              <mat-error
+                *ngIf="requestForm.controls['email'].errors?.['required']"
+                
+                >Email is Required</mat-error
+              >
+              <mat-error *ngIf="requestForm.get('email')?.hasError('pattern')">
+                Please Enter Valid Email
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field >
+              <input
+                type="text"
+                class="contactNumber"
+                id="contactNumberId"
+                matInput
+                placeholder="Contact Number"
+                formControlName="contactNumber"
+              />
+              <mat-error
+                *ngIf="requestForm.controls['contactNumber'].errors?.['required']"
+                
+                >Contact Number is Required</mat-error
+              >
+              <mat-error
+                *ngIf="requestForm.get('contactNumber')?.hasError('pattern')"
+              >
+                Please Enter Valid Contact Number
+              </mat-error>
+            </mat-form-field>
+            <!-- <p *ngIf="error" class="error">
+                  {{ error }}
+                </p> -->
+
+            <div class="button-area">
+              <!-- <span><a (click)="redirectToForgetPassword()" type="button"  mat-button class="resetbtn" >Forgot Your Password</a></span> -->
+            </div>
+
+            <div class="button-area">
+              <span
+                ><button class="loginbtn" (click)="resetField()" mat-button color="primary">
+                  Cancel
+                </button></span
+              >
+              <span
+                ><button
+                  type="submit"
+                  class="loginbtn"
+                  mat-raised-button
+                  color="primary"
+                  [disabled]="!requestForm.valid"
+                >
+                  Send Request
+                </button></span
+              >
+            </div>
+            
+          </form>
+          
+        </mat-card-content>
+        <div class="button-area">
+          <span><a (click)="redirectToLogin()" type="button"  mat-button class="resetbtn" ><mat-icon>arrow_back</mat-icon> Go Back</a></span>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

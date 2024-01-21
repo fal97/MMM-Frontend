@@ -1,0 +1,117 @@
+<frontend-title-with-button [title]="titleToPass" [btn_data]="btnList" />
+
+ 
+  <div class="card-container">
+    <!-- <mat-card class="card"> -->
+    <div class="card-container">
+      <mat-card class="card">
+  
+      <form
+        class="form-container"
+        [formGroup]="updateWorkshopForm"
+        (ngSubmit)="updateWorkshop()"
+      >
+        <mat-form-field appearance="fill" >
+          <mat-label>Workshop Name</mat-label>
+          <input matInput formControlName="name" />
+          <mat-error
+            *ngIf="
+              updateWorkshopForm.get('name')?.invalid &&
+              (updateWorkshopForm.get('name')?.dirty ||
+                updateWorkshopForm.get('name')?.touched)
+            "
+            
+            >Name is Required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="fill" >
+            <mat-label>Offering</mat-label>
+            <mat-select  formControlName="offering">
+              <mat-option class="matop" value="Mortgage saving"
+                >Mortgage saving</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="
+                updateWorkshopForm.get('offering')?.invalid &&
+                (updateWorkshopForm.get('offering')?.dirty ||
+                  updateWorkshopForm.get('offering')?.touched)
+              "
+              
+              >offering is Required</mat-error
+            >
+          </mat-form-field>
+    
+            <mat-form-field appearance="fill" >
+              <mat-label>Start Date (MM/DD/YYYY)</mat-label>
+              <input matInput formControlName="startDate" [matDatepicker]="startDate">       
+              <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+              <mat-datepicker #startDate></mat-datepicker>
+    
+              <mat-error
+              *ngIf="
+                updateWorkshopForm.get('startDate')?.invalid &&
+                (updateWorkshopForm.get('startDate')?.dirty ||
+                  updateWorkshopForm.get('startDate')?.touched)
+              "
+              
+              >Start Date is Required</mat-error
+            >
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill" >
+              <mat-label>End Date (MM/DD/YYYY)</mat-label>
+              <input matInput formControlName="endDate" [matDatepicker]="endDate">     
+              <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+              <mat-datepicker #endDate></mat-datepicker>
+    
+              <mat-error
+              *ngIf="
+                updateWorkshopForm.get('endDate')?.invalid &&
+                (updateWorkshopForm.get('endDate')?.dirty ||
+                  updateWorkshopForm.get('endDate')?.touched)
+              "
+              
+              >End Date is Required</mat-error
+            >
+    
+            </mat-form-field>
+     
+  
+        <div class="uploadbuttonContainer">
+          <p  >Documents:</p>
+          <input #fileInput hidden="true" type="file" onclick="this.value=null" multiple (change)="csvInputChange($event)"/>
+          <label for="input-file-id" class="file-button" (click)="fileInput.click()"
+            ><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="upload"></mat-icon>Upload</label
+          >
+        </div>
+        <div *ngFor="let progressInfo of workshopFilesToId; let index = index" class="uploadedFileContainer">
+          <a href={{progressInfo.filePath}}>{{progressInfo.fileName}}</a>
+          <a (click)="removeSelectedFile(progressInfo.id)" class="fileremovebutton">
+            <mat-icon aria-hidden="false" aria-label="Example home icon"  fontIcon="delete_outline"></mat-icon>
+          </a>
+        </div>
+  
+        <div class="btn-container">
+          <a
+            mat-raised-button
+            color="primary"
+            class="btn-cancle"
+            (click)="cancelChanges()"
+          >
+            Cancel
+        </a>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="!updateWorkshopForm.valid"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </mat-card >
+    </div>
+    <!-- </mat-card> -->
+  </div>
+  

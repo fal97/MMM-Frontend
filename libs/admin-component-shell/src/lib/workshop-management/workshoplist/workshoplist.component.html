@@ -1,0 +1,163 @@
+<frontend-title-with-button [title]="titleToPass" [btn_data]="btnList" />
+
+<div class="card-container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-form-field appearance="fill">
+        <mat-label>Filter By Status</mat-label>
+        <mat-select (selectionChange)="filterByStatusDropdown($event)">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Enter A Date Range</mat-label>
+        <mat-date-range-input
+          [formGroup]="dateRangeForm"
+          [rangePicker]="picker"
+        >
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start Date"
+            #dateRangeStart
+          />
+
+          <input
+            matEndDate
+            formControlName="end"
+            placeholder="End Date"
+            #dateRangeEnd
+            (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error
+          *ngIf="dateRangeForm.get('start')?.hasError('matStartDateInvalid')"
+          >Invalid start date</mat-error
+        >
+        <mat-error
+          *ngIf="dateRangeForm.get('end')?.hasError('matEndDateInvalid')"
+          >Invalid end date</mat-error
+        >
+        <button
+          *ngIf="showClearButtonDate"
+          mat-icon-button
+          matSuffix
+          (click)="clearStartDate($event)"
+          matTooltip="Clear The Date Range"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field class="custom-input">
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          matInput
+          (keyup)="FilterBySearch($event)"
+          placeholder="Search By Name"
+          [(ngModel)]="queryParams.searchText"
+        />
+        <button
+          *ngIf="showClearButton"
+          mat-icon-button
+          matSuffix
+          (click)="clearSearch()"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-title class="errorText" *ngIf="!isTableEmpty"
+        ><h4>Sorry, No Records Available.</h4></mat-card-title
+      >
+      <table
+        *ngIf="isTableEmpty"
+        matSort
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+      >
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef (click)="sortData('name')">
+            <strong>Name</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <!-- Start Date Column -->
+        <ng-container matColumnDef="startDate">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef (click)="sortData('startDate')">
+            <strong>Start Date</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.startDate | date : 'mediumDate' }}
+          </td>
+        </ng-container>
+
+        <!-- End Date Column -->
+        <ng-container matColumnDef="endDate">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef (click)="sortData('endDate')">
+            <strong>End Date</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.endDate | date : 'mediumDate' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-sort-header mat-header-cell *matHeaderCellDef>
+            <strong>Status</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.isActive === true ? 'Active' : 'Inactive' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef><strong>Actions</strong></th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex-button">
+              <ng-container>
+                <a
+                  mat-raised-button
+                  color="primary"
+                  class="act-btn"
+                  [routerLink]="['/dashboard/workshopedit', element.id]"
+                  >View</a
+                >
+              </ng-container>
+              <ng-container
+                ><a mat-raised-button color="primary" class="act-btn">
+                  {{ element.isActive === true ? 'Deactivate ' : 'Activate' }}
+                </a></ng-container
+              >
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-paginator
+        *ngIf="isTableEmpty"
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="handlePageChange($event)"
+        showFirstLastButtons
+      ></mat-paginator>
+    </mat-card-footer>
+  </mat-card>
+</div>

@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-content>
+    <table matSort mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+      <!-- Name Column -->
+      <ng-container matColumnDef="date">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>
+          <strong>Date</strong>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.selectDate | date : 'mediumDate' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="income Category">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>
+          <strong>Income Category</strong>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ getIncomeCatogoryText(element.incomeExpenseCatogory) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>
+          <strong>Description</strong>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.description }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-sort-header mat-header-cell *matHeaderCellDef>
+          <strong>Amount</strong>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.amount | currency }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-paginator
+      *ngIf="isTableEmpty"
+      [length]="totalItems"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="handlePageChange($event)"
+      showFirstLastButtons
+    ></mat-paginator>
+  </mat-card-footer>
+</mat-card>
+<div style="display: flex">
+  <strong>Total Income Amount : </strong> {{ incomeAmount | currency }}
+</div>

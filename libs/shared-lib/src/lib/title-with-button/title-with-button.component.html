@@ -1,0 +1,34 @@
+<div class="title">
+  <h3>{{ title }}</h3>
+  <!-- <div>
+    <button mat-raised-button color="primary" [routerLink]="routerLink">{{ buttonLabel }}</button>
+  </div> -->
+  <!-- <div class="test" [innerHTML]="content"></div> -->
+  <div class="btn-wrapper">
+    <div class="btn-wrapper-content">
+      <div class="btn-wrapper-align" *ngIf="isButtonListShown">
+        <button
+          *ngFor="let item of btn_data"
+          mat-raised-button
+          [color]="item.label === 'Back' ? 'basic' : 'primary'"
+          [routerLink]="item.routerLink"
+        >
+          {{ item.label }}
+        </button>
+      </div>
+      <div class="btn-wrapper-align" *ngIf="!isButtonListShown">
+        <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu">
+          <button
+            *ngFor="let item of btn_data"
+            mat-menu-item
+            [routerLink]="item.routerLink"
+            
+          >
+            {{ item.label }}
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</div>

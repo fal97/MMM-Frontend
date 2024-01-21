@@ -1,0 +1,194 @@
+
+<mat-card>
+    <h2 style="margin: 10px;">Profile</h2>
+<div>
+    <mat-card class="mat-main">
+        <form class="form-container" [formGroup]="personalDetailsSummaryForm">
+          <div class="main-container">
+            <strong>Personal Details</strong>
+            <div class="div-container">
+             
+              <mat-form-field class="field-container" appearance="fill" >
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" autocomplete="off"  />
+              </mat-form-field>
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" autocomplete="off"  />
+              </mat-form-field>
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>Contact Number</mat-label>
+                <input
+                  matInput
+                  formControlName="contactNumber"
+                  autocomplete="off"
+                  
+                />
+              </mat-form-field>
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>Occupation</mat-label>
+                <input
+                  matInput
+                  formControlName="occupations"
+                  autocomplete="off"
+                  
+                />
+              </mat-form-field>
+            </div>
+            <div class="div-container">
+              <p>Address :</p>
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>Street Address/PO Box</mat-label>
+                <input
+                  matInput
+                  formControlName="streetAddress"
+                  autocomplete="off"
+                  
+                />
+              </mat-form-field>
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>Town/City</mat-label>
+                <input matInput formControlName="town" autocomplete="off"  />
+              </mat-form-field>
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>State</mat-label>
+                <input matInput formControlName="state" autocomplete="off"  />
+              </mat-form-field>
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>Post Code</mat-label>
+                <input
+                  matInput
+                  formControlName="postCode"
+                  autocomplete="off"
+                  
+                />
+              </mat-form-field>
+
+              <mat-form-field class="field-container" appearance="fill">
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country">
+                  <mat-option *ngFor="let country of countries" [value]="country.name">
+                    {{ country.name }}
+                  </mat-option>
+                </mat-select>
+              
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+      </mat-card>
+      
+</div>
+<div class="incomeExpenseContainer">
+ 
+    <div>
+        <strong style="margin-bottom: 5rem; margin-left: 1rem;">Income & Expense Details</strong>
+        <frontend-income
+          #IncomeDetailsComponent
+        
+        ></frontend-income>
+        <frontend-expense
+          #ExpenseDetailsComponent
+       
+        ></frontend-expense>
+      </div>
+
+      
+</div>
+<div><mat-card class="mat-main">
+    <strong>Mortgage Details</strong>
+  
+    <form class="form-container" [formGroup]="mortgageDetailSummayForm">
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Loan Amount</mat-label>
+        <input
+          matInput
+          formControlName="loanAmount"
+          autocomplete="off"
+          
+        />
+      </mat-form-field>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Interest Rate</mat-label>
+        <input
+          matInput
+          formControlName="interestRate"
+          autocomplete="off"
+          
+        />
+      </mat-form-field>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Start Date</mat-label>
+        <input matInput formControlName="startDate" [matDatepicker]="startDate" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="startDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #startDate ></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <mat-form-field class="field-container" appearance="fill">
+          <mat-label>Loan Period</mat-label>
+          <input
+            matInput
+            formControlName="loanPeriod"
+            autocomplete="off"
+            
+          />
+        </mat-form-field>
+        <mat-form-field class="field-container" appearance="fill">
+          <mat-label>Loan Period Type</mat-label>
+          <mat-select formControlName="loanType">
+            <mat-option
+              
+              *ngFor="let loanPeriod of loanPeriodTypes"
+              [value]="loanPeriod.value"
+            >
+              {{ loanPeriod.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Frequency</mat-label>
+        <mat-select formControlName="frequency">
+          <mat-option
+            
+            *ngFor="let frequency of frequencyType"
+            [value]="frequency.value"
+          >
+            {{ frequency.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Periodic Payment</mat-label>
+        <input
+          matInput
+          formControlName="periodicPayment"
+          autocomplete="off"
+          
+        />
+      </mat-form-field>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Total Interest Paid</mat-label>
+        <input
+          matInput
+          formControlName="totalInterestPaid"
+          autocomplete="off"
+          
+        />
+      </mat-form-field>
+    </form>
+  </mat-card>
+  </div>
+<mat-card-actions>
+<div>
+  <button mat-raised-button color="primary" class="btn-main" mat-button mat-raised-button routerLink="/strategyInfo">View Strategies</button>
+    <button mat-raised-button color="primary" class="btn-main" mat-button mat-raised-button  (click)="cancelForm()">Cancel</button>
+    <button   [disabled]="!personalDetailsSummaryForm.valid || !mortgageDetailSummayForm.valid " mat-raised-button color="primary"  (click)="save()">Save</button>
+  </div>
+</mat-card-actions>
+</mat-card>
+

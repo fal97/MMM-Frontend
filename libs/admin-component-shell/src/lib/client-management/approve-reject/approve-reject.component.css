@@ -1,0 +1,126 @@
+/* .form-container {
+  display: flex;
+  flex-direction: column;
+}
+.card-container {
+  display: flex;
+  justify-content: left;
+  margin-top: 15px;
+  margin-left: 15px;
+  column-gap: 2rem;
+}
+
+.card-container-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card {
+  width: 800px;
+}
+
+
+.addresstext{
+  color: black;
+  font-size: 18px;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.btn-cancle {
+margin-right: 50px;
+}
+
+.listbox{
+padding: 15px;
+}
+
+.form-container{
+margin-left: 5%;
+margin-top: 5%;
+}
+.form-container[_ngcontent-ng-c1536222520] { 
+padding: 4%;
+} */
+
+.file-button {
+border: solid black 1px;
+padding: 5px;
+background-color: #194678;
+border-radius: 7% 7% 7% 7%;
+cursor: pointer;
+display: flex;
+color: white;
+
+}
+
+.uploadbuttonContainer {
+display: flex;
+align-items: center;
+}
+
+.uploadedFileContainer {
+display: flex;
+justify-content: space-around;
+margin-bottom: 15px;
+width: 65%;
+}
+
+.fileremovebutton {
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #194678;
+color: white;
+padding: 5px;
+height: 30px;
+}
+
+/* Style for the container that holds each file */
+.uploadedFileContainer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+background-color: #f0f0f0;
+padding: 10px;
+margin: 5px 0;
+border-radius: 5px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the file name */
+.uploadedFileContainer span {
+flex-grow: 1;
+margin-right: 10px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+
+/* Style for the remove button */
+.uploadedFileContainer a.fileremovebutton {
+background-color: #e74c3c;
+color: white;
+border: none;
+border-radius: 50%;
+width: 30px;
+height: 30px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+text-decoration: none;
+}
+
+.uploadedFileContainer a {
+
+text-decoration: none;
+}
+
+.uploadedFileContainer a.fileremovebutton:hover {
+background-color: #c0392b;
+}

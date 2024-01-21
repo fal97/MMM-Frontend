@@ -1,0 +1,65 @@
+<div class="main-wrapper">
+ 
+<div class="main-container">
+    <!-- <div class="header-text-container">
+        <h1 class="header-text">WelCome to</h1>
+        <h1 class="header-text">MMM</h1>
+    </div> -->
+    <div>
+        <mat-card class="card">
+            <div class="image-container ">
+              <img src="https://static.wixstatic.com/media/f7c4b7_4b17cac35f5847b89ce7759b062c7c59~mv2.png/v1/fill/w_240,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Monei_Lanscape_RGB_edited.png" />
+            </div>
+            <mat-card-title  ><h2>Log in</h2></mat-card-title>
+            <mat-card-title class="errorText" *ngIf="showErrorMsg" ><h6>{{errorText}}</h6></mat-card-title>
+
+            <mat-card-content> 
+              
+              <form class="form-container" [formGroup]="loginForm" (ngSubmit)="submit()">
+ 
+                  <mat-form-field>
+                    <input
+                      type="email"
+                      class="email"
+                      id="emailId"
+                      matInput
+                      placeholder="Email"
+                      formControlName="email"
+                      
+                    />
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input
+                      type="password"
+                      class="password"
+                      id="passwordId"
+                      matInput
+                      placeholder="Password"
+                      formControlName="password"
+                    />
+                  </mat-form-field>
+                <!-- <p *ngIf="error" class="error">
+              {{ error }}
+            </p> -->
+          
+                <div class="button-area">
+                  <span><a (click)="redirectToForgetPassword()" type="button"  mat-button class="resetbtn" >Forgot Your Password</a></span>
+                  
+                   
+
+                </div>
+                
+                <div class="button-area">
+                   
+                  <span><button type="submit" class="loginbtn" mat-button color="primary">	<mat-icon>input</mat-icon>Login</button></span>
+                  
+
+                </div>
+              </form>
+            </mat-card-content>
+          </mat-card>
+    </div>
+</div>
+
+
+</div>

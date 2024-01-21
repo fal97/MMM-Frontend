@@ -1,0 +1,145 @@
+<div class="card-container">
+   <h4>Mortgage Details</h4>
+  <form class="form-container" [formGroup]="mortgageDetailForm">
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Loan Amount</mat-label>
+      <input matInput formControlName="loanAmount" autocomplete="off" />
+      <mat-error
+        *ngIf="
+          mortgageDetailForm.get('loanAmount')?.invalid &&
+          (mortgageDetailForm.get('loanAmount')?.dirty ||
+            mortgageDetailForm.get('loanAmount')?.touched)
+        "
+        style="color: red"
+        >Loan Amount is Required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Interest Rate</mat-label>
+      <input matInput formControlName="interestRate" autocomplete="off" />
+      <mat-error
+        *ngIf="
+          mortgageDetailForm.get('interestRate')?.invalid &&
+          (mortgageDetailForm.get('interestRate')?.dirty ||
+            mortgageDetailForm.get('interestRate')?.touched)
+        "
+        style="color: red"
+        >Interest Rate is Required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput formControlName="startDate" [matDatepicker]="startDate" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="startDate"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #startDate></mat-datepicker>
+      <mat-error
+        *ngIf="
+          mortgageDetailForm.get('startDate')?.invalid &&
+          (mortgageDetailForm.get('startDate')?.dirty ||
+            mortgageDetailForm.get('startDate')?.touched)
+        "
+        style="color: red"
+        >Start Date is Required</mat-error
+      >
+    </mat-form-field>
+    <div>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Loan Period</mat-label>
+        <input matInput formControlName="loanPeriod" autocomplete="off" />
+        <mat-error
+          *ngIf="
+            mortgageDetailForm.get('loanPeriod')?.invalid &&
+            (mortgageDetailForm.get('loanPeriod')?.dirty ||
+              mortgageDetailForm.get('loanPeriod')?.touched)
+          "
+          style="color: red"
+          >Loan Period is Required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Loan Period Type</mat-label>
+        <mat-select formControlName="loanType">
+          <mat-option
+            *ngFor="let loanPeriod of loanPeriodTypes"
+            [value]="loanPeriod.value"
+          >
+            {{ loanPeriod.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            mortgageDetailForm.get('loanType')?.invalid &&
+            (mortgageDetailForm.get('loanType')?.dirty ||
+              mortgageDetailForm.get('loanType')?.touched)
+          "
+          style="color: red"
+          >Loan Period Type is Required</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Frequency</mat-label>
+      <mat-select formControlName="frequency">
+        <mat-option
+          *ngFor="let frequency of frequencyType"
+          [value]="frequency.value"
+        >
+          {{ frequency.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          mortgageDetailForm.get('frequency')?.invalid &&
+          (mortgageDetailForm.get('frequency')?.dirty ||
+            mortgageDetailForm.get('frequency')?.touched)
+        "
+        style="color: red"
+        >Frequency is Required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Periodic Payment</mat-label>
+      <input matInput formControlName="periodicPayment" autocomplete="off" />
+      <mat-error
+        *ngIf="
+          mortgageDetailForm.get('periodicPayment')?.invalid &&
+          (mortgageDetailForm.get('periodicPayment')?.dirty ||
+            mortgageDetailForm.get('periodicPayment')?.touched)
+        "
+        style="color: red"
+        >Periodic Payment is Required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Total Interest Paid</mat-label>
+      <input matInput formControlName="totalInterestPaid" autocomplete="off" />
+      <mat-error
+        *ngIf="
+          mortgageDetailForm.get('totalInterestPaid')?.invalid &&
+          (mortgageDetailForm.get('totalInterestPaid')?.dirty ||
+            mortgageDetailForm.get('totalInterestPaid')?.touched)
+        "
+        style="color: red"
+        >Total Interest Paid is Required</mat-error
+      >
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-button matStepperPrevious>Previous</button>
+
+      <button
+        mat-raised-button
+        matStepperNext
+        class="nav-btn pull-right"
+        color="primary"
+        [disabled]="!mortgageDetailForm.valid"
+      >
+        Next
+      </button>
+    </mat-card-actions>
+  </form>
+</div>

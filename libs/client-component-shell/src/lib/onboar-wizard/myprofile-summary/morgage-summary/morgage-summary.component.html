@@ -1,0 +1,87 @@
+<mat-card class="card-container">
+  <strong class="headerTitle">Mortgage Details</strong>
+
+  <form class="form-container" [formGroup]="mortgageDetailSummayForm">
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Loan Amount</mat-label>
+      <input
+        matInput
+        formControlName="loanAmount"
+        autocomplete="off"
+        readonly
+      />
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Interest Rate</mat-label>
+      <input
+        matInput
+        formControlName="interestRate"
+        autocomplete="off"
+        readonly
+      />
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input matInput formControlName="startDate" [matDatepicker]="startDate" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="startDate"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #startDate disabled></mat-datepicker>
+    </mat-form-field>
+    <div>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Loan Period</mat-label>
+        <input
+          matInput
+          formControlName="loanPeriod"
+          autocomplete="off"
+          readonly
+        />
+      </mat-form-field>
+      <mat-form-field class="field-container" appearance="fill">
+        <mat-label>Loan Period Type</mat-label>
+        <mat-select formControlName="loanType">
+          <mat-option
+            disabled
+            *ngFor="let loanPeriod of loanPeriodTypes"
+            [value]="loanPeriod.value"
+          >
+            {{ loanPeriod.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Frequency</mat-label>
+      <mat-select formControlName="frequency">
+        <mat-option
+          disabled
+          *ngFor="let frequency of frequencyType"
+          [value]="frequency.value"
+        >
+          {{ frequency.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Periodic Payment</mat-label>
+      <input
+        matInput
+        formControlName="periodicPayment"
+        autocomplete="off"
+        readonly
+      />
+    </mat-form-field>
+    <mat-form-field class="field-container" appearance="fill">
+      <mat-label>Total Interest Paid</mat-label>
+      <input
+        matInput
+        formControlName="totalInterestPaid"
+        autocomplete="off"
+        readonly
+      />
+    </mat-form-field>
+  </form>
+</mat-card>

@@ -1,0 +1,23 @@
+ .dashboard-container {
+    display: grid;
+    padding: 1rem;
+  }
+  .dashboard-container-flex {
+    display: grid;
+    justify-content: space-between;
+  }
+   
+  .singleInfo{
+    border: 3px solid #194678;
+    padding: 1rem;
+    border-radius: 2rem;
+   }
+ 
+  @media (min-width: 992px) {
+    .dashboard-container-flex {
+      display: flex;
+      gap: 1rem;
+    }
+ 
+  }
+  

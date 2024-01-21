@@ -1,0 +1,58 @@
+<div class="card-container">
+  <h4>Income & Expense Details</h4>
+  <br />
+  <mat-card-actions>
+    <div s class="uploadbuttonContainer">
+      <label style="margin-right: 30px">Upload CSV:</label>
+      <input
+        #fileInput
+        hidden="true"
+        type="file"
+        accept=".csv"
+        onclick="this.value=null"
+        (change)="csvInputChange($event)"
+      />
+      <button
+        mat-button
+        mat-raised-button
+        mat-raised-button
+        color="primary"
+        for="input-file-id"
+        class="file-button"
+        (click)="fileInput.click()"
+      >
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="upload"
+        ></mat-icon
+        >Upload
+      </button>
+    </div></mat-card-actions
+  >
+
+  <br />
+
+  <div>
+    <frontend-income
+      #IncomeDetailsComponent
+      (incomeDetailsChanged)="subscribeToIncomeFormChanges($event)"
+    ></frontend-income>
+    <frontend-expense
+      #ExpenseDetailsComponent
+      (expenseDetailsChanged)="subscribeToExpenseFormChanges($event)"
+    ></frontend-expense>
+  </div>
+
+  <mat-card-actions>
+    <button mat-button matStepperPrevious>Previous</button>
+    <button
+      mat-raised-button
+      matStepperNext
+      class="nav-btn pull-right"
+      color="primary"
+    >
+      Next
+    </button>
+  </mat-card-actions>
+</div>

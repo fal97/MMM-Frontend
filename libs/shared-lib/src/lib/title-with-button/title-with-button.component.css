@@ -1,0 +1,29 @@
+.title {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.btn-wrapper-content {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.btn-wrapper button {
+  width: auto;
+}
+.btn-wrapper-align button{
+margin-left: 0.5rem;
+}
+@media (min-width: 1200px) {
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .btn-wrapper {
+    flex: 2;
+  }
+  .btn-wrapper-align{
+    margin-left: auto;
+  }
+}

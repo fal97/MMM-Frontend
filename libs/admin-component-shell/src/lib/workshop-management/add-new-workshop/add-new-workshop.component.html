@@ -1,0 +1,158 @@
+<frontend-title-with-button [title]="titleToPass" [btn_data]="btnList" />
+
+<div class="card-container">
+  <!-- <mat-card class="card"> -->
+  <div class="card-container">
+    <mat-card class="card">
+      <form
+        class="form-container"
+        [formGroup]="addNewWorkshopForm"
+        (ngSubmit)="createWorkshop()"
+      >
+        <div class="form-container-flex">
+          <mat-form-field appearance="fill">
+            <mat-label>Workshop Name</mat-label>
+            <input matInput formControlName="name" autocomplete="off" />
+            <mat-error
+              *ngIf="
+                addNewWorkshopForm.get('name')?.invalid &&
+                (addNewWorkshopForm.get('name')?.dirty ||
+                  addNewWorkshopForm.get('name')?.touched)
+              "
+              >Name is Required</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>offering</mat-label>
+            <mat-select formControlName="offering">
+              <mat-option class="matop" value="Mortgage saving"
+                >Mortgage saving</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="
+                addNewWorkshopForm.get('offering')?.invalid &&
+                (addNewWorkshopForm.get('offering')?.dirty ||
+                  addNewWorkshopForm.get('offering')?.touched)
+              "
+              >offering is Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-container-flex">
+          <mat-form-field appearance="fill">
+            <mat-label>Start Date Eg:MM/DD/YYYY</mat-label>
+            <input
+              matInput
+              formControlName="startDate"
+              [matDatepicker]="startDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="startDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+
+            <mat-error
+              *ngIf="
+                addNewWorkshopForm.get('startDate')?.invalid &&
+                (addNewWorkshopForm.get('startDate')?.dirty ||
+                  addNewWorkshopForm.get('startDate')?.touched)
+              "
+              >Start Date is Required</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>End Date Eg:MM/DD/YYYY</mat-label>
+            <input
+              matInput
+              formControlName="endDate"
+              [matDatepicker]="endDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="endDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+
+            <mat-error
+              *ngIf="
+                addNewWorkshopForm.get('endDate')?.hasError('required') &&
+                (addNewWorkshopForm.get('endDate')?.dirty ||
+                  addNewWorkshopForm.get('endDate')?.touched)
+              "
+              >End Date is Required</mat-error
+            >
+            <mat-error
+              *ngIf="
+                addNewWorkshopForm.get('endDate')?.hasError('invalid') &&
+                (addNewWorkshopForm.get('endDate')?.dirty ||
+                  addNewWorkshopForm.get('endDate')?.touched)
+              "
+            >
+              End Date must be after Start Date
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="uploadbuttonContainer">
+          <p>Documents:</p>
+          <input
+            #fileInput
+            hidden="true"
+            type="file"
+            onclick="this.value=null"
+            multiple
+            (change)="csvInputChange($event)"
+          />
+          <label
+            for="input-file-id"
+            class="file-button"
+            (click)="fileInput.click()"
+            ><mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="upload"
+            ></mat-icon
+            >Upload</label
+          >
+        </div>
+        <div
+          *ngFor="let progressInfo of workshopFiles; let index = index"
+          class="uploadedFileContainer"
+        >
+          <span>{{ progressInfo.name }}</span>
+          <button (click)="removeSelectedFile(index)" class="fileremovebutton">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="delete_outline"
+            ></mat-icon>
+          </button>
+        </div>
+
+        <div class="btn-container">
+          <a
+            mat-raised-button
+            class="btn-cancle"
+            color="primary"
+            (click)="cancelChanges()"
+          >
+            Cancel
+          </a>
+          <button
+            mat-raised-button
+            color="primary"
+            class="create"
+            type="submit"
+            [disabled]="!addNewWorkshopForm.valid"
+          >
+            Create
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

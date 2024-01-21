@@ -1,0 +1,43 @@
+<div class="card-container">
+  <strong class="headertitlte">Summary</strong>
+  <frontend-personal-detail-summary
+    #PersonalSummaryDetailsComponent
+  ></frontend-personal-detail-summary>
+  <div class="income-expense-maincontainer">
+    <mat-card class="iecard-container">
+        <div>
+            <strong class="headertitlte">Income & Expense Details</strong>
+          </div>
+          <div class="incomeExpenseContainer">
+            <div class="incomeContainer">
+              <frontend-income-summary
+                #IncomeSummaryDetailsComponent
+              ></frontend-income-summary>
+            </div>
+            <div class="ExpenseContainer">
+              <frontend-expesnse-summary
+                #ExpenseSummaryDetailsComponent
+              ></frontend-expesnse-summary>
+            </div>
+          </div>
+    </mat-card>
+    
+  </div>
+
+  <frontend-morgage-summary
+    #MorgageSummaryDetailsComponent
+  ></frontend-morgage-summary>
+  <mat-card-actions>
+    <div>
+      <button mat-button matStepperPrevious>Previous</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="updateOnBoardingStatus()"
+      >
+        Save
+      </button>
+    </div>
+  </mat-card-actions>
+ 
+</div>

@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  margin: 0;
+/*  
+  background-image: linear-gradient(to right, white , #c5c9df)!important; */
+  background-image: linear-gradient(to right, white ,#182460 )!important;
+
+  
+    
+}
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+
+.mdc-list-item.mdc-list-item--with-one-line:hover{
+  background:rgb(130, 137, 154);
+}
+
+.mat-mdc-raised-button:not(:disabled){
+  background-color: #194678 !important;
+}
+
+.mdc-list-item__primary-text{
+  color: black;
+}
+mat-nav-list {
+  display: flex;
+  align-items: center;
+}
+
+mat-nav-list-item {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: baseline;
+
+}
+
+mat-icon {
+  margin-right: 10px;
+  
+}
+
+mat-sidenav-container{
+  height: calc(205vh - 115vh);
+}
+
+mat-sidenav{
+width: 250px;
+background-image: linear-gradient(180deg, #194678,#121C3A);
+
+
+
+}
+.mat-toolbar-row, .mat-toolbar-single-row{
+background-image: linear-gradient(171deg,#E5E6E7, #182460
+);
+
+}
+
+.tt{
+  color: red !important;
+}
+.mat-list-item {
+  background-color: #f0f0f0;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+.sidebar a {
+  color: red !important; /* Change to the desired font color */
+}
+.mdc-list-item__primary-text{
+  color: wheat !important;
+}
+mat-sidenav-content{
+  background-image: linear-gradient(151deg, white ,#182460 );
+
+}
+/* mat-sidenav-content{
+  background-image: linear-gradient(to right, white , #c5c9df);
+} */
+.primary{
+   background-color: #121C3A;
+  color: white !important;
+  padding: 1%;
+}
+
+ 
+.mdc-list-item__primary-text{
+  color: white !important;
+}
+.mat-mdc-list-item-unscoped-content > mdc-list-item__primary-text {
+  color: white !important;
+}
+
+
+.getColor {
+  color: white
+}

@@ -1,0 +1,170 @@
+<mat-card style="margin: 10px; padding: 10px">
+  <div style="display: flex">
+    <div style="width: 700px">
+      <form
+        class="form-container"
+        [formGroup]="addNewIncomeForm"
+        (ngSubmit)="onSubmit()"
+        #formDirective="ngForm"
+      >
+        <mat-form-field appearance="fill" style="width: 500px">
+          <mat-label>Date MM/DD/YYYY</mat-label>
+          <input
+            matInput
+            formControlName="selectDate"
+            [matDatepicker]="selectDate"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="selectDate"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #selectDate></mat-datepicker>
+          <mat-error
+            *ngIf="
+              addNewIncomeForm.get('selectDate')?.invalid &&
+              (addNewIncomeForm.get('selectDate')?.dirty ||
+                addNewIncomeForm.get('selectDate')?.touched)
+            "
+            style="color: red"
+            >Date is Required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="field-container" appearance="fill">
+          <mat-label>Income Catogory</mat-label>
+          <mat-select formControlName="incomeExpenseCatogory">
+            <mat-option *ngFor="let income of incomes" [value]="income.value">
+              {{ income.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              addNewIncomeForm.get('incomeExpenseCatogory')?.invalid &&
+              (addNewIncomeForm.get('incomeExpenseCatogory')?.dirty ||
+                addNewIncomeForm.get('incomeExpenseCatogory')?.touched)
+            "
+            style="color: red"
+            >Income Catogory is Required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field class="field-container" appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" autocomplete="off" />
+        </mat-form-field>
+        <mat-form-field class="field-container" appearance="fill">
+          <mat-label>Amount</mat-label>
+          <input matInput formControlName="amount" autocomplete="off" type="text" onlyNumber />
+          <mat-error
+            *ngIf="
+              addNewIncomeForm.get('amount')?.invalid &&
+              (addNewIncomeForm.get('amount')?.dirty ||
+                addNewIncomeForm.get('amount')?.touched)
+            "
+            style="color: red"
+            >Amount is Required</mat-error
+          >
+        </mat-form-field>
+
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          style="width: 30px"
+          [disabled]="!addNewIncomeForm.valid"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+
+    <div style="width: 900px">
+      <mat-card>
+        <mat-card-content>
+          <table
+            matSort
+            mat-table
+            class="mat-elevation-z8"
+            [dataSource]="dataSource"
+          >
+            <!-- Name Column -->
+            <ng-container matColumnDef="date">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef (click)="sortData('SelectDate')">
+                <strong>Date</strong>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.selectDate | date : 'mediumDate' }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="income Category">
+              <th mat-sort-header  mat-header-cell *matHeaderCellDef (click)="sortData('IncomeExpenseCatogory')">
+                <strong>Income Category</strong>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ getIncomeCatogoryText(element.incomeExpenseCatogory) }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th  mat-header-cell *matHeaderCellDef >
+                <strong>Description</strong>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.description }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef (click)="sortData('amount')">
+                <strong>Amount</strong>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.amount | currency }}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>
+                <strong>Actions</strong>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <a color="primary">
+                  <mat-icon
+                    aria-hidden="false"
+                    aria-label="Example home icon"
+                    (click)="editIncome(element)"
+                    style="margin-left: -2px"
+                    fontIcon="edit"
+                  ></mat-icon>
+                </a>
+                <a color="primary">
+                  <mat-icon
+                    aria-hidden="false"
+                    aria-label="Example home icon"
+                    (click)="deleteIncome(element)"
+                    style="margin-left: -2px"
+                    fontIcon="delete_outline"
+                  ></mat-icon>
+                </a>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </mat-card-content>
+        <mat-card-footer>
+          <mat-paginator
+            *ngIf="isTableEmpty"
+            [length]="totalItems"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="handlePageChange($event)"
+            showFirstLastButtons
+          ></mat-paginator>
+        </mat-card-footer>
+
+        
+      </mat-card>
+      <strong>Total Income Amount : </strong> {{incomeAmount | currency}}
+    </div>
+  </div>
+</mat-card>

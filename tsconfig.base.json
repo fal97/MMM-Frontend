@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@frontend/admin-component-shell": [
+        "libs/admin-component-shell/src/index.ts"
+      ],
+      "@frontend/app-shell": ["libs/app-shell/src/index.ts"],
+      "@frontend/client-component-shell": [
+        "libs/client-component-shell/src/index.ts"
+      ],
+      "@frontend/data-access-lib": ["libs/data-access-lib/src/index.ts"],
+      "@frontend/feature-shell": ["libs/feature-shell/src/index.ts"],
+      "@frontend/routing-lib": ["libs/routing-lib/src/index.ts"],
+      "@frontend/shared-lib": ["libs/shared-lib/src/index.ts"],
+      "@frontend/state-management-lib": [
+        "libs/state-management-lib/src/index.ts"
+      ],
+      "@frontend/testing-utilities-lib": [
+        "libs/testing-utilities-lib/src/index.ts"
+      ],
+      "@frontend/ui-library": ["libs/ui-library/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

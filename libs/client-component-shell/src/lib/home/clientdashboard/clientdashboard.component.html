@@ -1,0 +1,58 @@
+<mat-grid-list cols="6" rowHeight="100px">
+  <mat-grid-tile colspan="4" rowspan="1" class="customgrid" style="justify-content: left;">
+    <frontend-title-with-button [title]="titleToPass" [btn_data]="btnList" />
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="1"
+    ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+    ><mat-icon>star_half</mat-icon> <mat-icon>star_border</mat-icon
+    ><mat-icon>star_border</mat-icon></mat-grid-tile
+  >
+</mat-grid-list>
+<mat-grid-list cols="6" rowHeight="100px">
+  <mat-grid-tile rowspan="1" class="tileColored"
+    ><h4>Total Income : ${{ totalIncome }}</h4>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="1" class="tileColored">
+    <h4>Total Expense : ${{ totalExpence }}</h4>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="1" class="tileColored">
+    <h4>Loan Amount : ${{ loanAmount }}</h4>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="1" class="tileColored">
+    <h4>Interest Rate : {{ interestRate }}%</h4>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="2"></mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="6" rowHeight="100px">
+  <mat-grid-tile colspan="2" rowspan="2" class="spaceforcharts">
+    Chart 1</mat-grid-tile
+  >
+  <mat-grid-tile colspan="2" rowspan="2" class="spaceforcharts">
+    Chart 2</mat-grid-tile
+  >
+  <mat-grid-tile colspan="2" rowspan="1">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+ 
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>
+          <strong>Workshop</strong>
+        </th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>
+          <strong>Action</strong>
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-raised-button color="primary"  routerLink="/clientdashboard/viewworkbook" class="act-btn">View WorkBook</a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-grid-tile>
+</mat-grid-list>

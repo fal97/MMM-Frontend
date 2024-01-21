@@ -1,0 +1,96 @@
+
+<div  mat-dialog-content>
+  <mat-stepper #stepper (selectionChange)="selectionChange($event)">
+    <mat-step label="Step 1">
+      <h3 mat-dialog-title> Preview of records in the uploaded file </h3>
+      <table mat-table [dataSource]="dataSourceForAllRecords" class="mat-elevation-z8">
+        <ng-container matColumnDef="incomeExpenseCategory">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Income/Expense Category</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.incomeExpenseCategory }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Description</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
+    -*+     <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Amount</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="selectDate">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Select Date</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.selectDate }}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <br>
+      <button
+      mat-raised-button
+      matStepperNext
+      class="nav-btn pull-right"
+    >
+      Next
+    </button>
+    </mat-step>
+    <mat-step label="Step 2">
+      <h1 mat-dialog-title>{{ message }}</h1>
+      <div *ngIf="isPartiallySuccessful">
+      <h3 mat-dialog-title> Not imported records : </h3>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="incomeExpenseCategory">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Income/Expense Category</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.incomeExpenseCategory }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Description</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
+    -*+     <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Amount</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="selectDate">
+          <th mat-header-cell *matHeaderCellDef>
+            <strong>Select Date</strong>
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.selectDate }}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+       <br>
+      <button
+      mat-raised-button
+      (click) = "onNoClick()"
+      class="nav-btn pull-right"
+    >
+      Close
+    </button>
+
+    </mat-step>
+  </mat-stepper>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div> -->

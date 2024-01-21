@@ -1,0 +1,56 @@
+<div class="login-layout">
+  <div class="login-layout--banner">
+    <div class="login-layout-banner--title">
+      <h2>Welcome to Monei Mortgage Mastery</h2>
+      <h5>
+        We offer exclusive workshops to increase your savings on mortgages
+      </h5>
+    </div>
+  </div>
+  <div class="login-layout--form">
+    <div>
+      <form
+        class="form-container"
+        [formGroup]="loginForm"
+        (ngSubmit)="submit()"
+      >
+        <h4>Sign In</h4>
+        <mat-form-field>
+          <input
+            type="email"
+            class="email"
+            id="emailId"
+            matInput
+            placeholder="Enter Your Email"
+            formControlName="email"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            type="password"
+            class="password"
+            id="passwordId"
+            matInput
+            placeholder="Enter Your Password"
+            formControlName="password"
+          />
+        </mat-form-field>
+        <a (click)="redirectToForgetPassword()" type="button"
+          >Forgot Your Password</a
+        >
+        <button type="submit" mat-raised-button color="primary">
+          <mat-icon>input</mat-icon>Login
+        </button>
+
+        <button
+          routerLink="/clientrequest"
+          class="loginbtn"
+          mat-button
+          color="primary"
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

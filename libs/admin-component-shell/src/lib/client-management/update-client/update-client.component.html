@@ -1,0 +1,267 @@
+<frontend-title-with-button
+  [title]="titleToPass"
+  [btn_data]="isClientRejected ? btnList : btnBack"
+/>
+
+<div class="card-container">
+  <!-- <mat-card class="card"> -->
+  <div class="card-container">
+    <mat-card class="card">
+      <form
+        class="form-container"
+        [formGroup]="updateClientForm"
+        (ngSubmit)="updateClient()"
+      >
+        <div class="form-container-flex">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              formControlName="name"
+              [readonly]="!isClientRejected"
+            />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('name')?.invalid &&
+                (updateClientForm.get('name')?.dirty ||
+                  updateClientForm.get('name')?.touched)
+              "
+              >Name is Required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput readonly formControlName="email" />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('email')?.invalid &&
+                (updateClientForm.get('email')?.dirty ||
+                  updateClientForm.get('email')?.touched)
+              "
+              >Email is Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-container-flex">
+          <mat-form-field appearance="fill">
+            <mat-label>Contact Number</mat-label>
+            <input
+              matInput
+              formControlName="contactNumber"
+              [readonly]="!isClientRejected"
+            />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('contactNumber')?.invalid &&
+                (updateClientForm.get('contactNumber')?.dirty ||
+                  updateClientForm.get('contactNumber')?.touched)
+              "
+              >Contact Number is Required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Occupation</mat-label>
+            <input
+              matInput
+              formControlName="occupations"
+              [readonly]="!isClientRejected"
+            />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('occupations')?.invalid &&
+                (updateClientForm.get('occupations')?.dirty ||
+                  updateClientForm.get('occupations')?.touched)
+              "
+              >Occupation is Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div>
+          <p class="addresstext">Address :</p>
+        </div>
+        <div class="form-container-flex">
+          <mat-form-field appearance="fill">
+            <mat-label>Street Address/PO Box</mat-label>
+            <input
+              matInput
+              formControlName="streetAddress"
+              [readonly]="!isClientRejected"
+            />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('streetAddress')?.invalid &&
+                (updateClientForm.get('streetAddress')?.dirty ||
+                  updateClientForm.get('streetAddress')?.touched)
+              "
+              >Street Address is Required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Town/City</mat-label>
+            <input
+              matInput
+              formControlName="town"
+              [readonly]="!isClientRejected"
+            />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('town')?.invalid &&
+                (updateClientForm.get('town')?.dirty ||
+                  updateClientForm.get('town')?.touched)
+              "
+              >Town is Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-container-flex">
+          <mat-form-field appearance="fill">
+            <mat-label>State</mat-label>
+            <input
+              matInput
+              formControlName="state"
+              [readonly]="!isClientRejected"
+            />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('state')?.invalid &&
+                (updateClientForm.get('state')?.dirty ||
+                  updateClientForm.get('state')?.touched)
+              "
+              >State is Required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>PostCode</mat-label>
+            <input
+              matInput
+              formControlName="postCode"
+              [readonly]="!isClientRejected"
+            />
+            <mat-error
+              *ngIf="
+                updateClientForm.get('postCode')?.invalid &&
+                (updateClientForm.get('postCode')?.dirty ||
+                  updateClientForm.get('postCode')?.touched)
+              "
+              >Post Code is Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-container-flex">
+          <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="country" [disabled]="true">
+              <mat-option
+                *ngFor="let country of countries"
+                [value]="country.name"
+              >
+                {{ country.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                updateClientForm.get('country')?.invalid &&
+                (updateClientForm.get('country')?.dirty ||
+                  updateClientForm.get('country')?.touched)
+              "
+              >Country is Required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Workshop</mat-label>
+            <mat-select
+              formControlName="workshop"
+              [disabled]="!isClientRejected"
+            >
+              <mat-option
+                *ngFor="let workshop of workshops"
+                [value]="workshop.name"
+              >
+                {{ workshop.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                updateClientForm.get('workshop')?.invalid &&
+                (updateClientForm.get('workshop')?.dirty ||
+                  updateClientForm.get('workshop')?.touched)
+              "
+              >Workshop is Required</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="uploadbuttonContainer">
+          <p>Documents:</p>
+          <input
+            #fileInput
+            hidden="true"
+            type="file"
+            onclick="this.value=null"
+            multiple
+            (change)="csvInputChange($event)"
+          />
+          <label
+            *ngIf="isClientRejected"
+            for="input-file-id"
+            class="file-button"
+            (click)="fileInput.click()"
+            ><mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="upload"
+            ></mat-icon
+            >Upload</label
+          >
+        </div>
+        <div
+          *ngFor="let progressInfo of clientFilesToId; let index = index"
+          class="uploadedFileContainer"
+        >
+          <a href="{{ progressInfo.filePath }}">{{ progressInfo.fileName }}</a>
+          <a
+            (click)="removeSelectedFile(progressInfo.id)"
+            class="fileremovebutton"
+          >
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="delete_outline"
+            ></mat-icon>
+          </a>
+        </div>
+        <div *ngIf="!isClientRejected">
+          <p class="addresstext">Rejected Reason :</p>
+        </div>
+        <mat-form-field appearance="fill" *ngIf="!isClientRejected">
+          <input
+            matInput
+            formControlName="rejectionReason"
+            [readonly]="!isClientRejected"
+          />
+        </mat-form-field>
+        <div class="d-flex-button">
+          <a
+            *ngIf="isClientRejected"
+            mat-raised-button
+            color="primary"
+            class="btn-cancle"
+            (click)="cancelChanges()"
+          >
+            Cancel
+          </a>
+          <button
+            *ngIf="isClientRejected"
+            mat-raised-button
+            color="primary"
+            [disabled]="!updateClientForm.valid"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  <!-- </mat-card> -->
+</div>

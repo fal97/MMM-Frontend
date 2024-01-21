@@ -1,0 +1,25 @@
+.income-expense-maincontainer{
+    margin: 10px;
+}
+.incomeExpenseContainer{
+    display: flex;
+    padding: 15px;
+}
+
+.incomeContainer{
+    display: flex;
+    flex: 1;
+}
+
+.ExpenseContainer{
+    display: flex;
+    flex: 1;
+}
+
+.headertitlte{
+    margin-bottom: 10px
+}
+
+.iecard-container{
+    padding: 5px;
+}

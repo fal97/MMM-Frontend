@@ -1,0 +1,45 @@
+@import url(../../../../../../apps/client/../client/src/variables.css);
+.login-layout--form{
+  padding: 2rem;
+  display: grid;
+  align-items: center;
+}
+.login-layout--form form{
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+}
+.login-layout--banner{
+  height: 100vh;
+  background-image: linear-gradient(to right, var(--primary-blue) , var(--secondary-blue));
+  padding: 2rem;
+  display: none;
+  align-items: center;
+  color: var(--background-color);
+}
+.login-layout-banner--title{
+  display: grid;
+  gap:1rem;
+}
+.login-layout--form h4 {
+  margin-bottom: 2rem;
+}
+.mat-mdc-raised-button.mat-primary{
+  padding: 1.5rem;
+}
+@media (min-width: 992px) {
+  .login-layout {
+    display: flex;
+    height: 100vh;
+  }
+  .login-layout div {
+    flex: 1;
+  }
+  .login-layout--banner{
+   padding: 5rem;
+   display: grid;
+  }
+  .login-layout--form{
+    padding: 5rem;
+  }
+}

@@ -1,0 +1,10 @@
+.navbar-first-set{
+    display: flex;
+    align-items: center;
+    gap: 7rem; 
+}
+
+.logo{
+    width: 120px;
+    height: auto;
+}

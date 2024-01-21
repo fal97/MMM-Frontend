@@ -1,0 +1,126 @@
+<div class="main-wrapper">
+  <mat-toolbar class="navbar">
+    <span>
+      <img
+       alt="logo"
+        width="60%"
+        src="https://static.wixstatic.com/media/f7c4b7_4b17cac35f5847b89ce7759b062c7c59~mv2.png/v1/fill/w_240,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Monei_Lanscape_RGB_edited.png"
+      />
+    </span>
+    <!-- <span> Monei Mortgage Mastery Dasboard </span> -->
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+  <div class="main-container">
+    <!-- <div class="header-text-container">
+            <h1 class="header-text">WelCome to</h1>
+            <h1 class="header-text">MMM</h1>
+        </div> -->
+    <div>
+      <mat-card class="card">
+        <div class="image-container">
+          <img
+          alt="logo"
+            src="https://static.wixstatic.com/media/f7c4b7_4b17cac35f5847b89ce7759b062c7c59~mv2.png/v1/fill/w_240,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Monei_Lanscape_RGB_edited.png"
+          />
+        </div>
+        <mat-card-title><h2>Please Create an Account</h2></mat-card-title>
+        <mat-card-title
+          [ngClass]="isError ? 'error' : 'success'"
+          *ngIf="showErrorMsg"
+          ><p>{{ errorText }}</p></mat-card-title
+        >
+
+        <!-- <mat-card-title [ngClass]="isError ? 'error' : 'success'" *ngIf="showErrorMsg" ><p>{{errorText}}</p></mat-card-title> -->
+
+        <mat-card-content>
+          <form
+            class="form-container"
+            [formGroup]="resetPasswordForm"
+            (ngSubmit)="submit()"
+          >
+            <mat-form-field >
+              <input
+                type="text"
+                class="email"
+                id="email"
+                matInput
+                placeholder="User Name"
+                formControlName="email"
+                readonly
+              />
+            </mat-form-field>
+
+            <mat-form-field >
+              <input
+                [type]="hide ? 'password' : 'text'"
+                class="newPassword"
+                id="newPasswordId"
+                matInput
+                placeholder="Password"
+                formControlName="password"
+              />
+              <mat-icon matSuffix (click)="hide = !hide">{{
+                hide ? 'visibility_off' : 'visibility'
+              }}</mat-icon>
+              <mat-error
+                *ngIf="resetPasswordForm.controls['password'].errors?.['required']"
+                 
+                >Password is Required</mat-error
+              >
+
+              <mat-error
+                *ngIf="
+                  resetPasswordForm.get('password')?.hasError('pattern')
+                "
+                 
+              >
+              Use 6 or More Characters with a Mix Letter, Number & Symbols
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field >
+              <input
+                [type]="confirmhide ? 'password' : 'text'"
+                class="confirmPassword"
+                id="confirmPasswordId"
+                matInput
+                placeholder="Confirm Password"
+                formControlName="confirmpassword"
+              />
+              <mat-icon matSuffix (click)="confirmhide = !confirmhide">{{
+                confirmhide ? 'visibility_off' : 'visibility'
+              }}</mat-icon>
+
+              <mat-error
+              class="materrorcontainer"
+                *ngIf="resetPasswordForm.controls['confirmpassword'].errors?.['required']"
+                >Confirm Password is Required</mat-error
+              >
+            </mat-form-field>
+            <div class="checkboxcontainer">
+              <mat-checkbox
+                [checked]="checkbox"
+                color="primary"
+                (change)="checkbox = !checkbox"
+                >I have agreed to the Terms & Conditions</mat-checkbox
+              >
+            </div>
+
+            <div class="button-area">
+              <span>
+                <button
+                  type="submit"
+                  mat-raised-button
+                  class="loginbtn"
+                  color="primary"
+                  [disabled]="!checkbox || !resetPasswordForm.valid"
+                >
+                  Create Account & Login
+                </button></span
+              >
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

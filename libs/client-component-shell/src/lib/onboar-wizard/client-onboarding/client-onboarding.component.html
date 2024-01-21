@@ -1,0 +1,27 @@
+<div class="card-container">
+  <mat-card class="card"> 
+<h2>My Profile</h2>
+<mat-stepper #stepper (selectionChange)="selectionChange($event)">
+  <mat-step [stepControl]="form1">
+    <ng-template matStepLabel>Personal Details</ng-template>
+    <frontend-personal-deails (personalDetailsChanged)="subscribeToFormChanges($event)"
+      #PersonalDedailsComponent
+    ></frontend-personal-deails>
+  </mat-step>
+  <mat-step [stepControl]="form2" label="Fill out your address">
+    <ng-template matStepLabel>Income Expense Details</ng-template>
+    <frontend-income-expense (incomeDetailscheck)="subscribeToIncomeFormChanges($event)" (expenseDetailscheck)="subscribeToExpenseFormChanges($event)" (csvInputExpenseDetailscheck)="subscribeToCSVIncomeExpesneFormChanges($event)"
+      #IncomeExpenseDetailsComponent
+    ></frontend-income-expense>
+  </mat-step>
+  <mat-step [stepControl]="form3">
+    <ng-template matStepLabel>Mortgage Details</ng-template>
+    <frontend-morgate-details (morgageDetailsChanged)="subscribeToMorgageFormChanges($event)" #MorgateDetailsComponent></frontend-morgate-details>
+  </mat-step>
+  <mat-step [stepControl]="form4">
+    <ng-template matStepLabel>Summary</ng-template>
+    <frontend-myprofile-summary #SummaryDetailsComponent></frontend-myprofile-summary>
+  </mat-step>
+</mat-stepper>
+</mat-card>
+</div>

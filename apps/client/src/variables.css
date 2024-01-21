@@ -1,0 +1,13 @@
+:root {
+    --primary-blue: #194678;
+    --secondary-blue: #121C3A;
+    --tertary-black: #231F20;
+    --background-color: #f8f8f8;
+    --primary-silver: #BABCBE;
+    --secondary-silver: #E5E6E7;
+    --font-family: 'Helvetica', 'Arial', sans-serif;
+    --font-size-base: 1rem;
+    --line-height-base: 1.5;
+    --spacing-unit: 16px;
+}
+

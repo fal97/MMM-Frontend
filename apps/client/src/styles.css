@@ -1,0 +1,100 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url(variables.css);
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background-color: var(--background-color);
+  color: var(--tertary-black);
+  margin: 0;
+  padding: 0;
+}
+.gradient-blue {
+  background-image: linear-gradient(
+    to right,
+    var(--primary-blue),
+    var(--secondary-blue)
+  );
+}
+.gradient-silver {
+  background-image: linear-gradient(
+    to right,
+    var(--primary-silver),
+    var(--secondary-silver)
+  );
+}
+h1 {
+  font-size: clamp(2.5rem, 2.5vw, 4rem);
+}
+h2 {
+  font-size: clamp(2rem, 2.5vw, 3.5rem);
+}
+h3 {
+  font-size: clamp(1.8rem, 2.5vw, 3rem);
+}
+h4 {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+h5 {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+}
+h6 {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+}
+p {
+  font-size: var(--font-size-base);
+}
+.mat-mdc-raised-button.mat-primary {
+  background-color: var(--primary-blue, transparent) !important;
+  color: var(--background-color) !important;
+}
+.mat-mdc-button-base {
+  display: inline-flex;
+}
+.d-flex-button {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.form-container {
+  display: grid;
+  padding: 1rem;
+}
+.form-container-flex {
+  display: grid;
+}
+@media (min-width: 992px) {
+  .form-container-flex {
+    display: flex;
+    gap: 1rem;
+  }
+  .form-container-flex .mat-mdc-form-field {
+    width: 100%;
+  }
+}
+
+.mdc-list-item.mdc-list-item--with-one-line:hover {
+  background: rgb(130, 137, 154);
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+  background-color: #194678 !important;
+}
+
+.mdc-list-item__primary-text {
+  color: black;
+}
+mat-nav-list {
+  display: flex;
+  align-items: center;
+}
+
+mat-nav-list-item {
+  display: flex;
+  justify-content: space-between;
+  vertical-align: baseline;
+}
+
+mat-icon {
+  margin-right: 10px;
+}
